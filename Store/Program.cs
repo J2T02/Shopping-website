@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using Microsoft.OpenApi.Models;
 using Store.Database;
 using Store.Extension;
+using Store.Middleware;
 using Store.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,6 +39,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
         options.SwaggerEndpoint("/swagger/v1/swagger.json", "My API v1");
     });
 }
+app.UseMiddleware<GlobalExceptionHandling>();
 
 app.UseHttpsRedirection();
 
