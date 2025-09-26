@@ -17,6 +17,7 @@ namespace Store.Database
         public DbSet<Product> Products { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Wallet> Wallets { get; set; }
+        public DbSet<EmailOTP> EmailOTPs { get; set; }
         public ShopContext(DbContextOptions<ShopContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

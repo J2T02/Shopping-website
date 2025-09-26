@@ -1,4 +1,5 @@
-﻿using Store.IService;
+﻿using Store.DTOs.Email;
+using Store.IService;
 using Store.Repositories;
 using Store.Services;
 
@@ -12,6 +13,11 @@ namespace Store.Extension
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IAccountService, AccountService>();  
+            services.AddScoped<ICartService, CartService>();
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddAuthorization();
         }
     }
 }

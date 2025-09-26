@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Store.DTOs.Category;
 using Store.DTOs.Common;
@@ -30,13 +31,10 @@ namespace Store.Controller
         [HttpGet("[action]/{id}")]
         public async Task<IActionResult> GetProductById([FromRoute] int id)
         {
-            return Ok(new BaseResponse
-            {
-                Data = _mapper.Map<CategoryDto>(await _productService.GetProductById(id)),
-                Message = "Get Product Success"
-            });
+            var product = await _productService.GetProductById(id);
+            return Ok(new BaseResponse{ Data = _mapper.Map<ProductDto>(product),Message = "Get Product Success"});
         }
-
+       
         [HttpPost("[action]")]
         public async Task<IActionResult> AddProduct([FromBody] CreateProductDto createProductDto)
         {

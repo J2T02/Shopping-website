@@ -78,7 +78,7 @@ namespace Store.Services
 
         public async Task<Product> GetProductById(int id)
         {
-            var result = await _productRepository.Get().FirstOrDefaultAsync(x => x.Id == id);
+            var result = await _productRepository.Get().Include(x=>x.Category).FirstOrDefaultAsync(x => x.Id == id);
             if (result == null) throw new NotFoundException("Product not found!");
             return result;
         }
